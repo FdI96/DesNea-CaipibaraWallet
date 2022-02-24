@@ -1,0 +1,13 @@
+{
+  "operations": [
+    {
+      "id": 1,
+      "concept": "json-server",
+      "amount": "typicode",
+      "date": "",
+      "type": "entry"
+    }
+  ],
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+  "profile": { "name": "typicode" }
+}
