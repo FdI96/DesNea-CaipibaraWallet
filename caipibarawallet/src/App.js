@@ -1,13 +1,12 @@
-import "./App.css";
-import Layout from "./components/layout/layout";
-import Body from "./components/body/body";
+import logo from './assets/logo.svg';
+import './App.css';
+import Layout from './components/gera/layout/layout'
+
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <Body />
-      </Layout>
+      <Layout/>
     </div>
   );
 }
