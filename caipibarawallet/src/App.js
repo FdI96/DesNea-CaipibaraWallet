@@ -1,13 +1,11 @@
+import logo from "./assets/logo.svg";
 import "./App.css";
-import Layout from "./components/layout/marcos/layout";
-import Body from "./components/marcos/body/body";
+import Layout from "./components/gera/layout/layout";
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <Body />
-      </Layout>
+      <Layout />
     </div>
   );
 }
