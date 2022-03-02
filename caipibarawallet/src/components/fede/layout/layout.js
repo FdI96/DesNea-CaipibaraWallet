@@ -4,7 +4,7 @@ import "./layout.css"
 
 function Layout(props) {
     return (
-      <div id='layout'>
+      <div id='layout-fede'>
           <NavBar/>
             {props.children}
           <Footer/>
