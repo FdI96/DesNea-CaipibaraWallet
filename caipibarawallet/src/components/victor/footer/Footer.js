@@ -3,8 +3,8 @@ import './footer.css'
   
 export default function Footer() {
   return (
-    <div id={'footer'}>
-      <h2>This is a Footer</h2>
+    <div id={'victor-footer'}>
+      <p id={'victor-footer-quote'}>Made it with 🧉 by Victor</p>
     </div>
   )
 }

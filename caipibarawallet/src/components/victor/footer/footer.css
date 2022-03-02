@@ -1,8 +1,12 @@
-#footer{
+#victor-footer{
     position:absolute;
     bottom:0;
     width:100%;
     height:60px;   /* Height of the footer */
     background:#11A7BB;
+}
+
+#victor-footer-quote {
+    font-weight: 600;
     color: white;
 }
