@@ -2,7 +2,7 @@ import "./body.css"
 
 function Body() {
     return (
-      <div id='body'>
+      <div id='body-fede'>
         <div className='operation-box'>
           <h2 className='register-operation-title'>Register a new operation here:</h2>
           <div className='register-operation-content'>

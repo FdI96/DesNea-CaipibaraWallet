@@ -1,17 +1,22 @@
-import logo from './assets/logo.svg';
-import './App.css';
-import Layout from './components/fede/layout/layout'
-import Body from './components/fede/body/body';
+import "./App.css";
 
+import { Routes, Route } from "react-router-dom";
+
+import VictorHome from "./components/victor/home/Home";
+import FedeHome from "./components/fede/home/FedeHome";
+import Home from "../src/views/Home";
+// import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
     <div className="App">
-      <Layout>
-        <Body/>
-      </Layout>
+      <Routes>
+        <Route path="/" element ={<Home />} />
+        <Route path="/victor" element={<VictorHome />} />
+        <Route path="/federico" element={<FedeHome />} />
+        {/* <Route path="*" element={<PageNotFound />} /> */}
+      </Routes>
     </div>
   );
 }
-
 export default App;

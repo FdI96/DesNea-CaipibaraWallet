@@ -2,8 +2,10 @@ import "./footer.css"
 
 function Footer() {
     return (
-      <div id='footer'>
-          This is the Caipibara Wallet Exchanger Bet and Ecommerce Footer baby!
+      <div id='home-footer'>
+        <p id={'home-footer-quote'}>
+          Made with ☕ by Desnea React Team
+        </p>
       </div>
     );
   }
