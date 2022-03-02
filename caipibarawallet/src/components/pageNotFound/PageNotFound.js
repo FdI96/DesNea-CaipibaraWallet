@@ -1,4 +1,5 @@
 import React from 'react'
+import './pageNotFound.css'
 
 export default function PageNotFound() {
   return (
