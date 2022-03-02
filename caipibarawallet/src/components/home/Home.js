@@ -14,6 +14,11 @@ export default function Home() {
           Victor App
         </button>
     </Link>
+    <Link to={"/Gera"}>
+        <button id={'home-btn-gera'}>
+          Gera App
+        </button>
+    </Link>
     <Footer />
     </div>
   )

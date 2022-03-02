@@ -1,11 +1,14 @@
-import "./body.css"
+import "./body.css";
+import FetchDemo from '../../../services/Dbrecords/FetchDemo'
 
-function Body() {
+
+function BodyGTS() {
     return (
-      <div id='body'>
+      <div id='bodyGTS'>
           This is the Caipibara Wallet Exchanger Bet and Ecommerce Body baby!
+          <FetchDemo/>
       </div>
     );
   }
   
-  export default Body;
+  export default BodyGTS;
