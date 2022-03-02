@@ -1,3 +1,7 @@
+import logo from './assets/logo.svg';
+import './App.css';
+import Layout from './components/gera/layout/layout';
+import FetchDemo from './services/Dbrecords/FetchDemo';
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -16,6 +20,8 @@ function App() {
         <Route path="/dario" element={<DarioHome />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
+      <Layout/>
+      <FetchDemo/>
     </div>
   );
 }
