@@ -6,8 +6,23 @@
       "amount": "typicode",
       "date": "",
       "type": "entry"
+    },
+    {
+      "id": "7",
+      "concept": "algo",
+      "amount": "algo",
+      "date": "20200225",
+      "type": "income"
     }
   ],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }
