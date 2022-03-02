@@ -1,4 +1,5 @@
 import * as React from 'react'
+import "./footer.css"
 
 export default class Footer extends React.Component {
     constructor(props) {
@@ -10,9 +11,14 @@ export default class Footer extends React.Component {
 
     render () {
         return (
-            <div id='footer'> 
-                Footer
-            </div>
+            <React.Fragment>
+                <div id='footer'> 
+                    <hr />
+                    Footer
+                </div>
+            </React.Fragment>
+            
+            
         )
         
     }
