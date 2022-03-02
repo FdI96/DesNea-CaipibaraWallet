@@ -1,4 +1,3 @@
-import { tab } from "@testing-library/user-event/dist/tab";
 import { useEffect, useState } from "react"
 import "./body.css"
 
@@ -51,7 +50,7 @@ function Body(props) {
 
 
     return (
-        <div id="body">
+        <div id="dariobody">
             <h4>List of Operations</h4>
             <table>
                 <thead>

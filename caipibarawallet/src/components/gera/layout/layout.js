@@ -8,7 +8,6 @@ function layout()
         <div id="Layout">
         <Navbar/>
         <Body>
-            
         </Body>
         <Footer/>
     </div>
