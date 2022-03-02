@@ -14,6 +14,11 @@ export default function Home() {
           Victor App
         </button>
     </Link>
+    <Link to={"/dario"}>
+        <button id={'home-btn-dario'}>
+          Dario App
+        </button>
+    </Link>
     <Footer />
     </div>
   )
