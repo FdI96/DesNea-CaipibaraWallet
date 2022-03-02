@@ -1,4 +1,5 @@
 import * as React from 'react'
+import "./header.css"
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -9,9 +10,13 @@ export default class Header extends React.Component {
     }
     render () {
         return (
+            <React.Fragment>
             <div id='header'>
                 Header
+                <hr />
             </div>
+            </React.Fragment>
+            
         )
         
     }
