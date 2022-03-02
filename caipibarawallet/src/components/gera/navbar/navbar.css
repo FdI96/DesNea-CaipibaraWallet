@@ -1,0 +1,7 @@
+#navbar {
+    position:absolute;
+    top:0;
+    width:100%;
+    height:80px;   /* Height of the footer */
+    background:rgb(41, 69, 83);
+}

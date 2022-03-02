@@ -1,18 +1,20 @@
-import * as React from 'react'
-import logo from './assets/logo.svg';
 import "./App.css";
-import Layout from "./components/dario/layout/layout";
-import Body from "./components/dario/body/body";
 
+import { Routes, Route } from "react-router-dom";
+
+import VictorHome from "./components/victor/home/Home";
+import Home from "../src/views/Home";
+// import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
     <div className="App">
-        <Layout>
-            <Body />
-        </Layout>
+      <Routes>
+        <Route path="/" element ={<Home />} />
+        <Route path="/victor" element={<VictorHome />} />
+        {/* <Route path="*" element={<PageNotFound />} /> */}
+      </Routes>
     </div>
   );
 }
-
 export default App;
