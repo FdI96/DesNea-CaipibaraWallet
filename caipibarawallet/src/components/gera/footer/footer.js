@@ -1,11 +1,11 @@
 import './footer.css'
-function footer()
+function FooterGTS()
 {
     return (
-        <div id="footer">
+        <div id="footerGTS">
         <p>This is a M***F*** footer.</p>
     </div>
     )
 }
 
-export default footer
+export default FooterGTS;

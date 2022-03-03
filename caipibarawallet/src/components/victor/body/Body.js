@@ -6,7 +6,7 @@ import Card from '../card/Card'
 
 export default function Body() {
   return (
-    <div id={'body'}>
+    <div id={'body-victor'}>
       <Card>
         <CapiLogo />
         <h2>Caipibara Wallet</h2>

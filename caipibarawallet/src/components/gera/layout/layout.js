@@ -1,18 +1,15 @@
-import Body from '../body/body'
-import Footer from '../footer/footer'
+import React from 'react'
+import BodyGTS from '../body/body'
+import FooterGTS from '../footer/footer'
 import Navbar from '../navbar/navbar'
 
-function layout()
+export default function Layout()
 {
     return (
         <div id="Layout">
         <Navbar/>
-        <Body>
-            
-        </Body>
-        <Footer/>
+        <BodyGTS/>
+        <FooterGTS/>
     </div>
     )
 }
-
-export default layout

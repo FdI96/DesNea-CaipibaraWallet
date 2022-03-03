@@ -1,0 +1,4 @@
+table tr th, table tr td {
+    text-align: left;
+    width: 200px;
+}
