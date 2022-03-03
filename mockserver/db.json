@@ -129,14 +129,14 @@
     {
       "id": 19,
       "concept": "example1",
-      "amount": "typicode",
+      "amount": "20",
       "date": "03/03/2022",
       "type": "entry"
     },
     {
       "id": 20,
       "concept": "example1",
-      "amount": "typicode",
+      "amount": "65",
       "date": "03/03/2022",
       "type": "entry"
     },

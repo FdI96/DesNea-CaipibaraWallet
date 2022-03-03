@@ -2,3 +2,15 @@ table tr th, table tr td {
     text-align: left;
     width: 200px;
 }
+
+table tr td.actions {
+    width: 250px;
+}
+
+div.balance {
+    border: red solid 2px;
+    text-align: left;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    width: 20%;
+}
