@@ -1,13 +1,22 @@
-import logo from "./assets/logo.svg";
 import "./App.css";
-import Layout from "./components/gera/layout/layout";
+
+import { Routes, Route } from "react-router-dom";
+
+import VictorHome from "./components/victor/home/Home";
+import MarcosHome from "./components/marcos/home/Home";
+import Home from "../src/views/Home";
+// import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
     <div className="App">
-      <Layout />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/victor" element={<VictorHome />} />
+        <Route path="/marcos" element={<MarcosHome />} />
+        {/* <Route path="*" element={<PageNotFound />} /> */}
+      </Routes>
     </div>
   );
 }
-
 export default App;
