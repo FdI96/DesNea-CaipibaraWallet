@@ -20,8 +20,8 @@ function App() {
         <Route path="/dario" element={<DarioHome />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
-      <Layout/>
-      <FetchDemo/>
+      {/* <Layout/> */}
+      {/* <FetchDemo/> */}
     </div>
   );
 }
