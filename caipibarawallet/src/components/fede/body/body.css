@@ -1,10 +1,40 @@
 #body-fede {
-    background-color: green;
+    background-color: white;
     font-size: 20px;
     padding-top: 50px;
+    height: 92vh;
 }
 
-.register-operation-content {
+.operations-and-records {
+    display: flex;
+    height: 92vh;
+}
+
+.register-operation-title {
+    text-align: left;
+}
+
+.select-operations {
     display: flex;
     flex-direction: column;
+    width: 20%;
+    justify-content: center;
+    align-content: center;
+    height: 90vh;
+    background-image: url("../assets/images/wallet.png");
 }
+
+.operation-btn {
+    background-color: #C12E12;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
