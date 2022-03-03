@@ -1,12 +1,16 @@
-import "./footer.css"
+import "./footer.css";
 
 function Footer() {
-    return (
-      <div id='footer'>
-          This is the Caipibara Wallet Exchanger Bet and Ecommerce Footer baby!
+  return (
+    <div id="footer">
+      <div class="text-gray-700 text-center p-4">
+        © 2022 Copyright:&nbsp;
+        <a class="text-gray-800" href="#">
+          Capibara wallet
+        </a>
       </div>
-    );
-  }
-  
-  export default Footer;
-  
+    </div>
+  );
+}
+
+export default Footer;
