@@ -1,8 +1,28 @@
 import "./body.css"
+import React, { useEffect, useState } from 'react';
 import ShowRecords from "../showRecords/showRecords";
+import axiosRequest from '../../../request'
+const urlServer = 'http://localhost:3030/'
 
 function Body() {
-  
+  const [records, setRecords] = useState({})
+
+  useEffect(() => {
+    const url = urlServer + 'operations'
+    const option = {
+      method: 'GET',
+      body:{},
+      headers:''
+    }
+    const response = axiosRequest(url, option)
+                      .then( response => {
+                        setRecords(response.data)
+
+                        console.log(records, response)
+                      } )
+                      .catch(error => console.log(error))
+    return response
+  }, []);
 
   return (
     <div id='body-fede'>
@@ -15,7 +35,7 @@ function Body() {
             <button className="operation-btn">Delete an operation.</button>
             <button className="operation-btn"> Display all the records.</button>
           </div>
-          <ShowRecords/>
+          <ShowRecords records={records}/>
         </div>
       </div>
         

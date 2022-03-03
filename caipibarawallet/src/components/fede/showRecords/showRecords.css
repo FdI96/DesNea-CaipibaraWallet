@@ -1,4 +1,4 @@
-#show-records-element {
+.show-records-element {
     display: flex;
     flex-direction: column;
     width: 100%;
