@@ -1,0 +1,9 @@
+#show-records-element {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    height: 90vh;
+    background-image: url('../assets/images/capibaracontraje.jpg');
+    background-size: 1200px;
+}
