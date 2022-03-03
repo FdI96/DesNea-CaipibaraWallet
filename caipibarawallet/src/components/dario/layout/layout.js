@@ -12,7 +12,7 @@ export default class Layout extends React.Component {
 
     render () {
         return (
-            <div id='layout'>
+            <div id='dariolayout'>
             <Header />
                 {this.props.children}
             <Footer />

@@ -11,14 +11,10 @@ export default class Footer extends React.Component {
 
     render () {
         return (
-            <React.Fragment>
-                <div id='footer'> 
-                    <hr />
-                    Footer
-                </div>
-            </React.Fragment>
-            
-            
+            <div id='dariofooter' style={{backgroundColor: 'lightgray', lineHeight:'50px'}}> 
+                <hr />
+                Footer
+            </div>
         )
         
     }
