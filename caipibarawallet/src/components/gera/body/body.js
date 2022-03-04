@@ -6,7 +6,8 @@ function BodyGTS() {
     return (
       <div id='bodyGTS'>
           This is the Caipibara Wallet Exchanger Bet and Ecommerce Body baby!
-          <FetchDemo/>
+          <FetchDemo
+          />
       </div>
     );
   }
