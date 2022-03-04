@@ -6,7 +6,7 @@ function Layout(props) {
     return (
       <div id='layout-fede'>
           <NavBar/>
-            {props.children}
+          {props.children}
           <Footer/>
       </div>
     );

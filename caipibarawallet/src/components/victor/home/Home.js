@@ -8,8 +8,6 @@ export default function Home() {
     console.log("se renderiza el componente Home (Victor)");
   }, [])
   return (
-    <Layout>
-      <Body />
-    </Layout>
+    <Layout/>
   )
 }
