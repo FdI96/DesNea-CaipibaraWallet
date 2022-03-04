@@ -70,6 +70,7 @@ function Body(props) {
                 <table>
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Concept</th>
                             <th>Amount</th>
                             <th>Date</th>
@@ -81,11 +82,12 @@ function Body(props) {
                         {operations.map((card, index) => {
                             return (
                                 <tr>
-                                <td>{card.concept}</td>
-                                <td>{card.amount}</td>
-                                <td>{card.date}</td>
-                                <td>{card.type}</td>
-                                <td className="actions"><button style={{height: '30px'}}>Edit Operation</button> <button style={{height: '30px'}}>Delete Operation</button></td>
+                                    <td>{card.id}</td>
+                                    <td>{card.concept}</td>
+                                    <td>{card.amount}</td>
+                                    <td>{card.date}</td>
+                                    <td>{card.type}</td>
+                                    <td className="actions"><button style={{height: '30px'}}>Edit Operation</button> <button style={{height: '30px'}}>Delete Operation</button></td>
                             </tr>
                             )
                             
