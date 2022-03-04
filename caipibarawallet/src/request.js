@@ -7,7 +7,6 @@ export default function axiosRequest(url, option) {
         headers: option.headers,
         data: option.body
       })
-        .then(checkStatus)
         .then(async response => {
     
           return response; //.json();
