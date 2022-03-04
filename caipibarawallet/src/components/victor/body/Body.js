@@ -1,6 +1,8 @@
 import React from 'react'
 import './body.css'
 
+import { Link } from 'react-router-dom'
+
 import CapiLogo from '../capiLogo/CapiLogo'
 import Card from '../card/Card'
 
