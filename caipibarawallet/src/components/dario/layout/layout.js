@@ -14,7 +14,9 @@ export default class Layout extends React.Component {
         return (
             <div id='dariolayout'>
             <Header />
-                {this.props.children}
+                <div style={{padding: '10px 10px'}}>
+                    {this.props.children}
+                </div>
             <Footer />
         </div>
         )
