@@ -1,10 +1,6 @@
-import React from 'react';
-import Layout from '../layout/layout'
+import React from "react";
+import Layout from "../layout/layout";
 
-export default function Home()
-{
-    return (
-        <Layout/>
-      )
+export default function Home() {
+  return <Layout />;
 }
-
