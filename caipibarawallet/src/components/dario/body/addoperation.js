@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
 import "./addoperation.css"
+import {useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 function AddOperation(props)
 {
+    const dispatch = useDispatch()
+
     const [id, setId] = useState(null)
     const [concept, setConcept] = useState(null)
     const [amount, setAmount] = useState(null)
     const [date, setDate] = useState(null)
     const [type, setType] = useState(null)
+
+    const dario_balance = useSelector(state => state.dario_balance)
 
     const handleId = (ev) => {
         setId(ev.target.value);
@@ -47,6 +53,12 @@ function AddOperation(props)
             
         }).then((response) => {
             console.log(response);
+
+            dispatch({ 
+                type: 'CHANGE_BALANCE',
+                dario_balance: parseInt(amount) + dario_balance
+              })
+
             props.volverDeAddOperation();
         }).catch((error) => {
             console.log(error);
