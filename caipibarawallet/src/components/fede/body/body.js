@@ -2,12 +2,18 @@ import "./body.css"
 import React, { useEffect, useState } from 'react';
 import ShowRecords from "../showRecords/showRecords";
 import axiosRequest from '../../../request'
+import RegisterRecords from "../registerRecords/registerRecords";
+import DeleteRecords from "../deleteRecords/deleteRecords";
+import EditRecords from "../editRecords/editRecords";
+// add this in a dinamyc way
 const urlServer = 'http://localhost:3030/'
 
 function Body() {
-  const [records, setRecords] = useState({})
+  const [component, setComponent] = useState('records')
 
-  useEffect(() => {
+  const [records, setRecords] = useState([])
+
+  const fetchRecords = () => {
     const url = urlServer + 'operations'
     const option = {
       method: 'GET',
@@ -22,7 +28,24 @@ function Body() {
                       } )
                       .catch(error => console.log(error))
     return response
-  }, []);
+  }
+
+  useEffect(() => fetchRecords(), []);
+
+  const switchRenders = () => {
+    switch (component) {
+      case 'records':
+        return <ShowRecords records={records}/>
+      case 'register':
+        return <RegisterRecords />
+      case 'delete':
+        return <DeleteRecords />
+      case 'edit':
+        return <EditRecords />
+      default:
+        return <ShowRecords records={records}/>
+    }
+  }
 
   return (
     <div id='body-fede'>
@@ -30,13 +53,17 @@ function Body() {
         <div className="operations-and-records">
           <div className='select-operations'>
             <h2 className='register-operation-title'>Select an operation:</h2>
-            <button className="operation-btn">Register a new operation.</button>
-            <button className="operation-btn">Edit an operation.</button>
-            <button className="operation-btn">Delete an operation.</button>
-            <button className="operation-btn"> Display all the records.</button>
+            <button className="operation-btn" onClick={() => setComponent('register')}>Register a new operation.</button>
+            <button className="operation-btn" onClick={() => setComponent('edit')}>Edit an operation.</button>
+            <button className="operation-btn" onClick={() => setComponent('delete')}>Delete an operation.</button>
+            <button className="operation-btn" onClick={() => setComponent('records')}> Display the latest records.</button>
           </div>
-          <ShowRecords records={records}/>
+          <div id='display-box'>
+            {switchRenders()}
+          </div>
+          
         </div>
+        
       </div>
         
     </div>
