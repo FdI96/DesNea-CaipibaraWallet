@@ -10,6 +10,7 @@ function Body(props) {
 
     const [refresh, setRefresh] = useState(false)
     const [operations, setOperation] = useState([])
+    const [balance, setBalance] = useState(0)
     const [addOperation, setAddOperation] = useState(false)
 
     const dario_balance = useSelector(state => state.dario_balance)
@@ -21,6 +22,12 @@ function Body(props) {
             return response.json();
         }).then((result) => {
             setOperation(result);
+
+            var balance = 0;
+            result.forEach(element => {
+                balance += parseInt(element.amount) * (element.type === 'income' ? 1 : -1);
+            });
+            setBalance(balance);
 
             console.log(result);
         }).catch((error) => {
@@ -45,6 +52,7 @@ function Body(props) {
                 type: 'CHANGE_BALANCE',
                 dario_balance: balance
               })
+            //setBalance(balance);
 
             console.log(result);
         }).catch((error) => {
