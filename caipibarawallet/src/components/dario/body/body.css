@@ -14,3 +14,8 @@ div.balance {
     padding: 5px 10px;
     width: 20%;
 }
+
+button {
+    background-color: lightgray;
+    padding: 2px;
+}
