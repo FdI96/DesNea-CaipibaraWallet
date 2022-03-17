@@ -287,6 +287,3 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 .local-chromium
-
-
-/src/Idercor.Agro.App.Web/wwwroot/dev/
