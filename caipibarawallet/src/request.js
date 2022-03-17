@@ -37,13 +37,13 @@ export default function axiosRequest(url, option) {
             message = e.message;
           }
     
-          if (isDevelop) {
-            window.alert(
-              'Request Error',
-              e.response ? JSON.stringify(e.response) : JSON.stringify(message),
-              [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
-            );
-          }
+          // if (isDevelop) {
+          //   window.alert(
+          //     'Request Error',
+          //     e.response ? JSON.stringify(e.response) : JSON.stringify(message),
+          //     [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
+          //   );
+          // }
           throw e.response ? e.response : e;
         });
 }
