@@ -1,10 +1,10 @@
 import "./body.css"
 import React, { useEffect, useState } from 'react';
-import ShowRecords from "../showRecords/showRecords";
+import ShowRecords from "../Records/showRecords/showRecords";
 import axiosRequest from '../../../request'
-import RegisterRecords from "../registerRecords/registerRecords";
-import DeleteRecords from "../deleteRecords/deleteRecords";
-import EditRecords from "../editRecords/editRecords";
+import RegisterRecords from "../Records/registerRecords/registerRecords";
+import DeleteRecords from "../Records/deleteRecords/deleteRecords";
+import EditRecords from "../Records/editRecords/editRecords";
 // add this in a dinamyc way
 const urlServer = 'http://localhost:3030/'
 
