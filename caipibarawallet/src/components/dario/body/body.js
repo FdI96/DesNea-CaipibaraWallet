@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import "./body.css"
 import AddOperation from "./addoperation"
-import {useSelector} from 'react-redux';
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateBalance, incrementCounter } from "../reducer/darioReducer"
 
 function Body(props) {
 
@@ -12,7 +12,9 @@ function Body(props) {
     const [operations, setOperation] = useState([])
     const [addOperation, setAddOperation] = useState(false)
 
-    const dario_balance = useSelector(state => state.dario_balance)
+    const balance = useSelector((state) => state.dario.balance)
+    const counter = useSelector((state) => state.dario.counter)
+
 
     useEffect(() => {
         fetch('http://localhost:3004/operations', {
@@ -21,12 +23,6 @@ function Body(props) {
             return response.json();
         }).then((result) => {
             setOperation(result);
-
-            var balance = 0;
-            result.forEach(element => {
-                balance += parseInt(element.amount) * (element.type === 'income' ? 1 : -1);
-            });
-
             console.log(result);
         }).catch((error) => {
             console.log(error);
@@ -46,10 +42,7 @@ function Body(props) {
                 balance += parseInt(element.amount) * (element.type === 'income' ? 1 : -1);
             });
 
-            dispatch({ 
-                type: 'CHANGE_BALANCE',
-                dario_balance: balance
-              })
+            dispatch(updateBalance(balance));
 
             console.log(result);
         }).catch((error) => {
@@ -79,12 +72,19 @@ function Body(props) {
                 </div>
             :
             <div>
-                <div className="balance">Balance: {dario_balance} dollars</div>
+                <div className="balance">Balance: {balance}</div>
+                <div className="counter">Counter: {counter}</div>
                 <h4>List of Operations</h4>
                 <div style={{textAlign: 'left', marginBottom: '10px'}}>
                     <button style={{height: '30px'}} onClick = {() => {
                         setAddOperation(true);
                     }}>Add Operation</button>
+                    &nbsp;
+                    <button style={{height: '30px', marginBottom: '10px'}} onClick={() => {
+                        dispatch(incrementCounter());
+                    }}>
+                        Increment Counter
+                    </button>
                 </div>
                 <table>
                     <thead>
