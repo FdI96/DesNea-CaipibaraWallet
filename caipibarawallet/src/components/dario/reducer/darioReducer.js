@@ -11,12 +11,15 @@ export const darioSlice = createSlice({
         updateBalance: (state, action) => {
             state.balance += action.payload
         },
+        setBalance : (state, action) => {
+            state.balance = action.payload
+        },
         incrementCounter: (state) => {
             state.counter += 1;
         }
     }
 })
 
-export const { updateBalance, incrementCounter } = darioSlice.actions
+export const { updateBalance, incrementCounter, setBalance } = darioSlice.actions
 export default darioSlice.reducer
 

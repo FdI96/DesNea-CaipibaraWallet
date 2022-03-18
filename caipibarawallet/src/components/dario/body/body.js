@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "./body.css"
 import AddOperation from "./addoperation"
 import { useSelector, useDispatch } from 'react-redux'
-import { updateBalance, incrementCounter } from "../reducer/darioReducer"
+import { incrementCounter, setBalance } from "../reducer/darioReducer"
 
 function Body(props) {
 
@@ -42,7 +42,7 @@ function Body(props) {
                 balance += parseInt(element.amount) * (element.type === 'income' ? 1 : -1);
             });
 
-            dispatch(updateBalance(balance));
+            dispatch(setBalance(balance));
 
             console.log(result);
         }).catch((error) => {
