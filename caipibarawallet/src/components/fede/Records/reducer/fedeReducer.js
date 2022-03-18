@@ -3,28 +3,22 @@ import { createSlice } from '@reduxjs/toolkit'
 export const fedeReducer = createSlice({
   name: 'fede',
   initialState: {
-    values: {
-      id: '',
-      concept: '',
-      amount: '',
-      date: '00/00/0000',
-      type: ''
-    },
+    myMoney: 999,
   },
   reducers: {
-    addRecord: (state) => {
-      values = state
+    increment: (state) => {
+      state.myMoney = state.myMoney + 1
     },
-    deleteRecord: (state) => {
-      values = state
+    decrement: (state) => {
+      state.myMoney = state - 1
     },
-    updateRecord: (state) => {
-      values = state
+    incrementAmount: (state, amount) => {
+      state.myMoney = state + amount
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addRecord, deleteRecord, updateRecord } = fedeReducer.actions
+export const { increment, decrement, incrementAmount } = fedeReducer.actions
 
 export default fedeReducer.reducer
