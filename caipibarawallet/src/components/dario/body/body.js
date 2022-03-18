@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react"
 import "./body.css"
 import AddOperation from "./addoperation"
+import {useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 function Body(props) {
+
+    const dispatch = useDispatch()
+
     const [refresh, setRefresh] = useState(false)
     const [operations, setOperation] = useState([])
-    const [balance, setBalance] = useState(0)
     const [addOperation, setAddOperation] = useState(false)
+
+    const dario_balance = useSelector(state => state.dario_balance)
 
     useEffect(() => {
         fetch('http://localhost:3004/operations', {
@@ -20,7 +26,6 @@ function Body(props) {
             result.forEach(element => {
                 balance += parseInt(element.amount) * (element.type === 'income' ? 1 : -1);
             });
-            setBalance(balance);
 
             console.log(result);
         }).catch((error) => {
@@ -40,7 +45,11 @@ function Body(props) {
             result.forEach(element => {
                 balance += parseInt(element.amount) * (element.type === 'income' ? 1 : -1);
             });
-            setBalance(balance);
+
+            dispatch({ 
+                type: 'CHANGE_BALANCE',
+                dario_balance: balance
+              })
 
             console.log(result);
         }).catch((error) => {
@@ -70,7 +79,7 @@ function Body(props) {
                 </div>
             :
             <div>
-                <div className="balance">Balance: {balance} dollars</div>
+                <div className="balance">Balance: {dario_balance} dollars</div>
                 <h4>List of Operations</h4>
                 <div style={{textAlign: 'left', marginBottom: '10px'}}>
                     <button style={{height: '30px'}} onClick = {() => {

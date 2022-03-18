@@ -8,7 +8,7 @@ export default function ShowRecords(props) {
 
     return (
         <div className='show-records-element'>
-            {props.records.map((record) => {
+            {props.records ? props.records.map((record) => {
                 return(
                     <div className='record'>
                         <div className='record-concept'>
@@ -25,7 +25,7 @@ export default function ShowRecords(props) {
                         </div>
                     </div>
                 )
-            })}
+            }): null}
         </div>
     )
 }
