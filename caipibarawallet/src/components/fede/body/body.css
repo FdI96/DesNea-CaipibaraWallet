@@ -14,7 +14,19 @@
     text-align: left;
 }
 
-.select-operations {
+.random-test {
+    color: green;
+    border-radius: 10px;
+    border: 2px;
+    background-color: white;
+}
+
+.random-test:hover {
+    color: yellow;
+    cursor: pointer;
+}
+
+.left-panel {
     display: flex;
     flex-direction: column;
     width: 20%;
