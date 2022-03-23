@@ -21,7 +21,7 @@ export default class Header extends React.Component {
                         About Us
                     </Link>
                     <span> / </span>
-                    <Link to={"/"}>
+                    <Link to={"/dario/contact"}>
                         Contact
                     </Link>
                 </div>
