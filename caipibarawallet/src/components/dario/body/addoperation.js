@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import "./addoperation.css"
-import {useSelector} from 'react-redux';
-import { useDispatch } from 'react-redux'
+import { updateBalance } from '../reducer/darioReducer'
 
 function AddOperation(props)
 {
@@ -12,8 +12,6 @@ function AddOperation(props)
     const [amount, setAmount] = useState(null)
     const [date, setDate] = useState(null)
     const [type, setType] = useState(null)
-
-    const dario_balance = useSelector(state => state.dario_balance)
 
     const handleId = (ev) => {
         setId(ev.target.value);
@@ -54,10 +52,7 @@ function AddOperation(props)
         }).then((response) => {
             console.log(response);
 
-            dispatch({ 
-                type: 'CHANGE_BALANCE',
-                dario_balance: parseInt(amount) + dario_balance
-              })
+            dispatch(updateBalance(parseInt(amount)))
 
             props.volverDeAddOperation();
         }).catch((error) => {
