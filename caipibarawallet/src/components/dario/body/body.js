@@ -9,8 +9,9 @@ function Body(props) {
     const dispatch = useDispatch()
 
     const [refresh, setRefresh] = useState(false)
-    const [operations, setOperation] = useState([])
+    const [operations, setOperations] = useState([])
     const [addOperation, setAddOperation] = useState(false)
+    const [operation, setOperation] = useState(null)
 
     const balance = useSelector((state) => state.dario.balance)
     const counter = useSelector((state) => state.dario.counter)
@@ -22,7 +23,7 @@ function Body(props) {
         }).then((response) => {
             return response.json();
         }).then((result) => {
-            setOperation(result);
+            setOperations(result);
             console.log(result);
         }).catch((error) => {
             console.log(error);
@@ -35,7 +36,7 @@ function Body(props) {
         }).then((response) => {
             return response.json();
         }).then((result) => {
-            setOperation(result);
+            setOperations(result);
 
             var balance = 0;
             result.forEach(element => {
@@ -68,23 +69,18 @@ function Body(props) {
         <div id="dariobody">
             {addOperation === true ?
                 <div>
-                    <AddOperation volverDeAddOperation = {volverDeAddOperation} />
+                    <AddOperation volverDeAddOperation = {volverDeAddOperation} operation = {operation} />
                 </div>
             :
             <div>
                 <div className="balance">Balance: {balance}</div>
-                <div className="counter">Counter: {counter}</div>
-                <h4>List of Operations</h4>
+                <h4 className="font-bold">List of Operations</h4>
                 <div style={{textAlign: 'left', marginBottom: '10px'}}>
                     <button style={{height: '30px'}} onClick = {() => {
+                        setOperation(null);
                         setAddOperation(true);
                     }}>Add Operation</button>
-                    &nbsp;
-                    <button style={{height: '30px', marginBottom: '10px'}} onClick={() => {
-                        dispatch(incrementCounter());
-                    }}>
-                        Increment Counter
-                    </button>
+                   
                 </div>
                 <table>
                     <thead>
@@ -106,7 +102,13 @@ function Body(props) {
                                     <td>{card.amount}</td>
                                     <td>{card.date}</td>
                                     <td>{card.type}</td>
-                                    <td className="actions"><button style={{height: '30px'}}>Edit Operation</button> <button style={{height: '30px'}}>Delete Operation</button></td>
+                                    <td className="actions">
+                                        <button style={{height: '30px'}} onClick={ () => {
+                                            setOperation(card);
+                                            setAddOperation(true);
+                                        }}>Edit Operation</button> &nbsp;
+                                        <button style={{height: '30px'}}>Delete Operation</button>
+                                    </td>
                             </tr>
                             )
                             
