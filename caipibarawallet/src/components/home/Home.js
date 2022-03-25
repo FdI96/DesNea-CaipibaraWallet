@@ -18,7 +18,7 @@ export default function Home() {
         <Link to={"/federico"}>
           <button id={"home-btn-fede"}>Fede App</button>
         </Link>
-        <Link to={"/dario"}>
+        <Link to={"/dario/home"}>
           <button id={"home-btn-dario"}>Dario App</button>
         </Link>
         <Link to={"/gera"}>

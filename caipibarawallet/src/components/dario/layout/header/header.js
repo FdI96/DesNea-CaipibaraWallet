@@ -13,7 +13,7 @@ export default class Header extends React.Component {
         return (
             <div id='darioheader' style={{backgroundColor: 'lightgray', lineHeight: '50px'}}>
                 <div>
-                    <Link to={"/dario"}>
+                    <Link to={"/dario/home"}>
                         Operations
                     </Link>
                     <span> / </span>
