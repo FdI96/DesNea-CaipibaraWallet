@@ -4,7 +4,8 @@
   transition: 0.3s;
   width: 40%;
   height: 50%;
-  background-color: white;
-  /* position: inherit; */
+  /* background-color: white; */
+  display: grid;
+  place-content: center;
   margin: 10% auto;
 }
