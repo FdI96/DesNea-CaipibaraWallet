@@ -8,13 +8,11 @@ import Contact from '../pages/contact'
 function DarioRoutes(props) {
 
     return (
-        <React.Fragment>
-            <Routes>
-                <Route path='/' element={ <Home /> }></Route>
-                <Route path='/aboutus' element={ <AboutUs />}></Route>
-                <Route path='/contact' element={ <Contact />}></Route>
-            </Routes>
-        </React.Fragment>
+        <Routes>
+            <Route path='/' element={ <Home /> }></Route>
+            <Route path='/aboutus' element={ <AboutUs />}></Route>
+            <Route path='/contact' element={ <Contact />}></Route>
+        </Routes>
         
     )
 }
