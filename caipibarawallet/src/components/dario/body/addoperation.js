@@ -13,6 +13,18 @@ function AddOperation(props)
     const [date, setDate] = useState(null)
     const [type, setType] = useState(null)
 
+    useEffect(() => {
+        if(props.operation != null)
+        {
+            setId(props.operation.id);
+            setConcept(props.operation.concept);
+            setAmount(props.operation.amount);
+            setDate(props.operation.date);
+            setType(props.operation.type);
+        }
+
+    }, [])
+
     const handleId = (ev) => {
         setId(ev.target.value);
     }
@@ -31,6 +43,32 @@ function AddOperation(props)
 
     const handleType = (ev) => {
         setType(ev.target.value);
+    }
+
+    const updateOperation = () => {
+        var data = {
+            id: id,
+            concept: concept,
+            amount: amount,
+            date: date,
+            type: type
+        }
+
+        fetch('http://localhost:3004/operations/'+ id, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((response) => {
+            console.log(response);
+            dispatch(updateBalance(parseInt(amount) - props.operation.amount))
+
+            props.volverDeAddOperation();
+
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 
     const registerOperation = () => {
@@ -66,12 +104,13 @@ function AddOperation(props)
 
             <div class="block p-6 rounded-lg bg-white max-w-sm">
                 <h4 style={{fontWeight: 'bold'}}>
-                    Add Operation
+                    {props.operation !== null ? 'Edit Operation' : 'Add Operation'}
                 </h4>
+                
                 <form>
                     <div class="form-group">
                     <label for="exampleInputId1" class="self-start form-label inline-block mb-2 text-gray-700">Id</label>
-                    <input type="email" onChange={handleId} class="form-control
+                    <input type="email" onChange={handleId} value={ id } disabled = {props.operation !== null ? true : false} class="form-control
                         block
                         w-full
                         px-3
@@ -86,12 +125,12 @@ function AddOperation(props)
                         ease-in-out
                         m-0
                         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputId1"
-                        aria-describedby="emailHelp" placeholder="Enter Id" />
+                        aria-describedby="emailHelp" placeholder="Enter Id"  />
                     
                     </div>
                     <div class="form-group">
                     <label for="exampleInputConcept1" class="form-label inline-block mb-2 text-gray-700">Concept</label>
-                    <input type="text" onChange={handleConcept} class="form-control block
+                    <input type="text" onChange={handleConcept} value = {concept} class="form-control block
                         w-full
                         px-3
                         py-1.5
@@ -109,7 +148,7 @@ function AddOperation(props)
                     </div>
                     <div class="form-group">
                     <label for="exampleInputAmount1" class="form-label inline-block mb-2 text-gray-700">Amount</label>
-                    <input type="text" onChange={handleAmount} class="form-control block
+                    <input type="text" onChange={handleAmount} value = { amount } class="form-control block
                         w-full
                         px-3
                         py-1.5
@@ -127,7 +166,7 @@ function AddOperation(props)
                     </div>
                     <div class="form-group">
                     <label for="exampleInputDate1" class="form-label inline-block mb-2 text-gray-700">Date</label>
-                    <input type="text" onChange={handleDate} class="form-control block
+                    <input type="text" onChange={handleDate} value = { date } class="form-control block
                         w-full
                         px-3
                         py-1.5
@@ -147,7 +186,7 @@ function AddOperation(props)
                     <div class="form-group mb-6">
                         <label for="exampleInputType1" class="form-label inline-block mb-2 text-gray-700">Type</label>
 
-                        <select onChange={handleType} class="form-select appearance-none
+                        <select onChange={handleType} value= { type } disabled = {props.operation !== null ? true : false} class="form-select appearance-none
                         block
                         w-full
                         px-3
@@ -180,8 +219,6 @@ function AddOperation(props)
                         uppercase 
                         rounded 
                         shadow-md 
-                        hover:bg-gray-900 
-                        hover:shadow-lg 
                         focus:bg-gray-900 
                         focus:shadow-lg 
                         focus:outline-none 
@@ -207,7 +244,15 @@ function AddOperation(props)
                         active:bg-blue-800 active:shadow-lg
                         transition
                         duration-150
-                        ease-in-out" onClick={registerOperation}>Submit</button>
+                        ease-in-out" onClick={() => {
+                            if(props.operation === null)
+                            {
+                                registerOperation();
+                            }
+                            else{
+                                updateOperation();
+                            }
+                        }}>Submit</button>
                 </form>
             </div>
             
