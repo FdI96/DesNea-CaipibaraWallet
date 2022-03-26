@@ -11,8 +11,7 @@ export default class Footer extends React.Component {
 
     render () {
         return (
-            <div id='dariofooter' style={{backgroundColor: 'lightgray', lineHeight:'50px'}}> 
-                <hr />
+            <div id='dariofooter'> 
                 Footer
             </div>
         )

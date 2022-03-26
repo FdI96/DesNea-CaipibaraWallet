@@ -73,13 +73,13 @@ function Body(props) {
                 </div>
             :
             <div>
-                <div className="balance">Balance: {balance}</div>
-                <h4 className="font-bold">List of Operations</h4>
+                <div className="balance">BALANCE: {balance}</div>
+                <h4 className="font-bold">LIST OF OPERATIONS</h4>
                 <div style={{textAlign: 'left', marginBottom: '10px'}}>
-                    <button style={{height: '30px'}} onClick = {() => {
+                    <button onClick = {() => {
                         setOperation(null);
                         setAddOperation(true);
-                    }}>Add Operation</button>
+                    }} className="actions">Add Operation</button>
                    
                 </div>
                 <table>
@@ -103,11 +103,11 @@ function Body(props) {
                                     <td>{card.date}</td>
                                     <td>{card.type}</td>
                                     <td className="actions">
-                                        <button style={{height: '30px'}} onClick={ () => {
+                                        <button onClick={ () => {
                                             setOperation(card);
                                             setAddOperation(true);
-                                        }}>Edit Operation</button> &nbsp;
-                                        <button style={{height: '30px'}}>Delete Operation</button>
+                                        }} className="actions">Edit Operation</button> &nbsp;
+                                        <button className="actions">Delete Operation</button>
                                     </td>
                             </tr>
                             )

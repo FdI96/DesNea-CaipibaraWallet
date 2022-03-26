@@ -104,7 +104,7 @@ function AddOperation(props)
 
             <div class="block p-6 rounded-lg bg-white max-w-sm">
                 <h4 style={{fontWeight: 'bold'}}>
-                    {props.operation !== null ? 'Edit Operation' : 'Add Operation'}
+                    {props.operation !== null ? 'EDIT OPERATION' : 'ADD OPERATION'}
                 </h4>
                 
                 <form>
