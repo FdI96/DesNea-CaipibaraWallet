@@ -6,7 +6,7 @@ import RegisterRecords from "../Records/registerRecords/registerRecords";
 import DeleteRecords from "../Records/deleteRecords/deleteRecords";
 import EditRecords from "../Records/editRecords/editRecords";
 import { useDispatch, useSelector } from "react-redux";
-import { increment } from "../Records/reducer/fedeReducer";
+import { increment, decrement } from "../Records/reducer/fedeReducer";
 // add this in a dinamyc way
 const urlServer = 'http://localhost:3030/'
 
@@ -36,6 +36,10 @@ function Body() {
 
   useEffect(() => fetchRecords(), []);
 
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
   const switchRenders = () => {
     switch (component) {
       case 'records':
@@ -52,7 +56,14 @@ function Body() {
   }
 
   const WinOneDollar = () => {
-    dispatch(increment())
+    
+    let randomNumber = getRandomInt(0,10);
+
+    if (randomNumber >= 5) {
+      dispatch(increment())
+    } else {
+      dispatch(decrement())
+    }
   }
 
   var balance = useSelector((state) => state.fede.myMoney)
@@ -62,7 +73,7 @@ function Body() {
       <div className='operation-box'>
         <div className="operations-and-records">
           <div className='left-panel'>
-            <div className="random-test" onClick={() => WinOneDollar()}>Win one 1$ just clicking</div>
+            <div className="random-test" onClick={() => WinOneDollar()}>Win or Lose 1$ randomly just by clicking</div>
             <div className="balance-box">
               <div id="balance">Balance:</div>
               <div id="balance-amount">{balance}</div>     
