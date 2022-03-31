@@ -10,7 +10,7 @@ export const fedeReducer = createSlice({
       state.myMoney = state.myMoney + 1
     },
     decrement: (state) => {
-      state.myMoney = state - 1
+      state.myMoney = state.myMoney - 1
     },
     incrementAmount: (state, amount) => {
       state.myMoney = state + amount

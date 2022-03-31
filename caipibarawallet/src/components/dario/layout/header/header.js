@@ -11,21 +11,20 @@ export default class Header extends React.Component {
     }
     render () {
         return (
-            <div id='darioheader' style={{backgroundColor: 'lightgray', lineHeight: '50px'}}>
+            <div id='header'>
                 <div>
-                    <Link to={"/dario/home"}>
+                    <Link to={"/dario/home"} className="link">
                         Operations
                     </Link>
                     <span> / </span>
-                    <Link to={"/dario/aboutus"}>
+                    <Link to={"/dario/about"} className="link">
                         About Us
                     </Link>
                     <span> / </span>
-                    <Link to={"/dario/contact"}>
+                    <Link to={"/dario/contact"} className="link">
                         Contact
                     </Link>
                 </div>
-                <hr />
             </div>
             
         )

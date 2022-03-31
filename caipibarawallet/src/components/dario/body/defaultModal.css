@@ -1,0 +1,43 @@
+div.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.modal-content {
+    width: 500px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px 2px black;
+}
+
+div.modal-header, div.modal-footer {
+    padding: 10px;
+}
+
+h4.modal-title {
+    margin: 0;
+    font-weight: bold;
+    text-align: left;
+}
+
+div.modal-body {
+    padding: 10px;
+}
+
+button {
+    background-color: rgb(66, 87, 180);
+    color: white;
+    padding: 8px 15px;
+    border: 1px solid rgb(30, 46, 116);
+}
+
+button:hover {
+    background-color: rgb(30, 46, 116);
+}
