@@ -64,6 +64,6 @@ const requestsSlice = createSlice({
 
 export const { requestUpdated } = requestsSlice.actions;
 
-export const selectAllRequests = (state) => state.requests.requests;
+export const selectAllRequests = (state) => state.marcosRequests.requests;
 
 export default requestsSlice.reducer;

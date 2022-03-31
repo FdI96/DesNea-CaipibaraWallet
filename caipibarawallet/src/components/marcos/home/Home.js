@@ -7,10 +7,10 @@ import { fetchUsers } from "../users/userSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.marcosUsers);
 
   useEffect(() => {
-    if (!users || !users.lenght) {
+    if (!users || !users.length) {
       dispatch(fetchUsers());
     }
   }, [users, dispatch]);

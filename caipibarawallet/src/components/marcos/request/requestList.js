@@ -94,8 +94,8 @@ export const RequestList = () => {
   const dispatch = useDispatch();
   const requests = useSelector(selectAllRequests);
 
-  const requestStatus = useSelector((state) => state.requests.status);
-  const error = useSelector((state) => state.requests.error);
+  const requestStatus = useSelector((state) => state.marcosRequests.status);
+  const error = useSelector((state) => state.marcosRequests.error);
 
   useEffect(() => {
     if (requestStatus === "idle") {
