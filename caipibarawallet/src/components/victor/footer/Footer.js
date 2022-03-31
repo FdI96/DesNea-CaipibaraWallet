@@ -3,8 +3,8 @@ import './footer.css'
   
 export default function Footer() {
   return (
-    <div id={'victor-footer'}>
-      <p id={'victor-footer-quote'}>Made it with 🧉 by Victor</p>
+    <div className={'absolute w-full h-16 bottom-0 bg-cyan-600 z-20'}>
+      <p className={'font-semibold text-white | mt-5'}>Made it with 🧉 by Victor</p>
     </div>
   )
 }

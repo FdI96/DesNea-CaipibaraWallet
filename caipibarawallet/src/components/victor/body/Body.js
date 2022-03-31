@@ -1,7 +1,7 @@
 import React from 'react'
-import './body.css'
+// import './body.css'
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { increment } from "../reducer/victorReducer";
 import CapiLogo from '../capiLogo/CapiLogo'
@@ -15,10 +15,8 @@ export default function Body() {
   //       return <ShowRecords records={records}/>
   //     case 'crypto':
   //       return <RegisterRecords />
-  //     case 'delete':
+  //     case 'contact':
   //       return <DeleteRecords />
-  //     case 'edit':
-  //       return <EditRecords />
   //     default:
   //       return <ShowRecords records={records}/>
   //   }
@@ -31,7 +29,7 @@ export default function Body() {
   var balance = useSelector((state) => state.victor.myMoney)
 
   return (
-    <div id={'body-victor'}>
+    <div className={'fixed bg-slate-50 w-full h-full'}>
       <Card>
         <CapiLogo />
         <h2>Caipibara Wallet</h2>
