@@ -1,10 +1,21 @@
 table tr th, table tr td {
     text-align: left;
     width: 180px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    
 }
 
 table tr td.actions {
-    width: 250px;
+    width: 300px;
+}
+
+table tr {
+    border-bottom: 1px solid black;
+}
+
+table thead {
+    background-color: #d0d5d8;
 }
 
 div.balance {
@@ -15,7 +26,14 @@ div.balance {
     width: 20%;
 }
 
-button {
-    background-color: lightgray;
-    padding: 2px;
+
+button.actions {
+    background-color: rgb(66, 87, 180);
+    color: white;
+    padding: 8px;
+    border: 1px solid rgb(30, 46, 116);
+}
+
+button.actions:hover {
+    background-color: rgb(30, 46, 116);
 }

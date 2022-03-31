@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import "./body.css"
 import AddOperation from "./addoperation"
-import {useSelector} from 'react-redux';
-import { useDispatch } from 'react-redux'
+import DefaultModal from "./defaultModal"
+import { useSelector, useDispatch } from 'react-redux'
+import { updateBalance, setBalance } from "../reducer/darioReducer"
 
 function Body(props) {
 
     const dispatch = useDispatch()
 
     const [refresh, setRefresh] = useState(false)
-    const [operations, setOperation] = useState([])
-    const [balance, setBalance] = useState(0)
+    const [operations, setOperations] = useState([])
     const [addOperation, setAddOperation] = useState(false)
+    const [showModal, setShowModal] = useState(false)
+    const [operation, setOperation] = useState(null)
+    const [concept, setConcept] = useState('')
 
-    const dario_balance = useSelector(state => state.dario_balance)
+    const balance = useSelector((state) => state.dario.balance)
+
 
     useEffect(() => {
         fetch('http://localhost:3004/operations', {
@@ -21,14 +25,7 @@ function Body(props) {
         }).then((response) => {
             return response.json();
         }).then((result) => {
-            setOperation(result);
-
-            var balance = 0;
-            result.forEach(element => {
-                balance += parseInt(element.amount) * (element.type === 'income' ? 1 : -1);
-            });
-            setBalance(balance);
-
+            setOperations(result);
             console.log(result);
         }).catch((error) => {
             console.log(error);
@@ -41,18 +38,14 @@ function Body(props) {
         }).then((response) => {
             return response.json();
         }).then((result) => {
-            setOperation(result);
+            setOperations(result);
 
             var balance = 0;
             result.forEach(element => {
                 balance += parseInt(element.amount) * (element.type === 'income' ? 1 : -1);
             });
 
-            dispatch({ 
-                type: 'CHANGE_BALANCE',
-                dario_balance: balance
-              })
-            //setBalance(balance);
+            dispatch(setBalance(balance));
 
             console.log(result);
         }).catch((error) => {
@@ -60,64 +53,87 @@ function Body(props) {
         })
     }, []);
 
-    
-
-    const editOperation = () => {
-        console.log('edit operation');
-    }
-
-    const deleteOperation = () => {
-        console.log('delete operation');
-    }
-
     const volverDeAddOperation = () => {
         setAddOperation(!addOperation);
         setRefresh(!refresh);
     }
-    return (
-        <div id="dariobody">
-            {addOperation === true ?
-                <div>
-                    <AddOperation volverDeAddOperation = {volverDeAddOperation} />
-                </div>
-            :
-            <div>
-                <div className="balance">Balance: {dario_balance} dollars</div>
-                <h4>List of Operations</h4>
-                <div style={{textAlign: 'left', marginBottom: '10px'}}>
-                    <button style={{height: '30px'}} onClick = {() => {
-                        setAddOperation(true);
-                    }}>Add Operation</button>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Concept</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th className="actions">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {operations.map((card, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{card.id}</td>
-                                    <td>{card.concept}</td>
-                                    <td>{card.amount}</td>
-                                    <td>{card.date}</td>
-                                    <td>{card.type}</td>
-                                    <td className="actions"><button style={{height: '30px'}}>Edit Operation</button> <button style={{height: '30px'}}>Delete Operation</button></td>
-                            </tr>
-                            )
-                            
-                        })}
-                    </tbody>
-                </table>
-            </div>
+
+    const deleteOperation = () => {
+        fetch('http://localhost:3004/operations/' + operation.id, {
+            method: 'DELETE',
+            body: null,
+            headers:{
+                "Content-Type": "application/ json"
             }
+        }).then((response) => {
+            console.log(response);
+            dispatch(updateBalance(operation.amount * (-1)))
+            setShowModal(false);
+            setRefresh(!refresh);
+        }).catch((error) => {
+            console.log(error);
+        })
+        
+    }
+
+    return (
+        <div>
+            {addOperation === true ?
+                <AddOperation volverDeAddOperation = {volverDeAddOperation} operation = {operation} />
+            : 
+                <div>
+                    <div className="balance">BALANCE: {balance}</div>
+                    <h4 className="font-bold">LIST OF OPERATIONS</h4>
+                    <div style={{textAlign: 'left', marginBottom: '10px'}}>
+                        <button onClick = {() => {
+                            setOperation(null);
+                            setAddOperation(true);
+                        }} className="actions">Add Operation</button>
+                    
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Concept</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th className="actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {operations.map((card, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{card.id}</td>
+                                        <td>{card.concept}</td>
+                                        <td>{card.amount}</td>
+                                        <td>{card.date}</td>
+                                        <td>{card.type}</td>
+                                        <td className="actions">
+                                            <button onClick={ () => {
+                                                setOperation(card);
+                                                setAddOperation(true);
+                                            }} className="actions">Edit Operation</button> &nbsp;
+                                            <button className="actions" onClick={() => {
+                                                setOperation(card);
+                                                setConcept(card.concept);
+                                                setShowModal(true);
+                                            }}>Delete Operation</button>
+                                        </td>
+                                </tr>
+                                )
+                                
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            }
+            <DefaultModal showModal = {showModal} onClose={() => {setShowModal(false)}}
+                title = "DELETE OPERATION" action = {deleteOperation}>
+                <p>¿ Do you wish to eliminate the operation  <b>{concept}</b> ?</p>
+            </DefaultModal>
         </div> 
     )
 }
