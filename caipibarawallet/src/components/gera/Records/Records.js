@@ -5,6 +5,7 @@ const Records = ({ data }) => {
       <table>
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Concept</th>
                         <th>Amount</th>
                         <th>Date</th>
@@ -16,6 +17,7 @@ const Records = ({ data }) => {
                     {data.map((item, index) => {
                         return (
                             <tr>
+                            <td>{item.id}</td>
                             <td>{item.concept}</td>
                             <td>{item.amount}</td>
                             <td>{item.date}</td>

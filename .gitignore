@@ -289,3 +289,4 @@ __pycache__/
 .local-chromium
 
 mockserver/
+/caipibarawallet/package-lock.json
