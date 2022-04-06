@@ -8,6 +8,7 @@ import Home from "../src/views/Home";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 import FedeHome from "./components/fede/home/FedeHome";
 import DarioHome from "./components/dario/home/home";
+import DarioRoutes from './components/dario/route/routes'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/victor" element={<VictorHome />} />
         <Route path="/federico" element={<FedeHome />} />
-        <Route path="/dario" element={<DarioHome />} />
+        <Route path="/dario/*" element={<DarioRoutes />} />
         <Route path="/gera" element={<GeraHome />} />
         <Route path="/marcos" element={<MarcosHome />} />
         <Route path="*" element={<PageNotFound />} />

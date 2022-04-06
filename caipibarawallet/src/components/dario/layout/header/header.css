@@ -1,3 +1,9 @@
 div#header {
-    height: 50px;
+    line-height: 50px;
+    background-color: black;
+    color: white;
+}
+
+.link:hover {
+    color: rgb(66, 87, 180);
 }
