@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { server, axiosRequest } from '../../../../request'
+import { client } from '../../../../utils/apiClient'
 
-const server = 'http://localhost:3030/'
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const initialState = {
   myMoney: 999,
@@ -57,9 +59,14 @@ export const selectAllRecords = state => state.fede.records
 export const selectRecordById = (state, recordId) => state.fede.records.find(record => record.id === recordId)
 
 const getRecords = async () => {
-  
-  const response = await server.get('operations')
+  await sleep(3000)
+  const options = {
+    method: 'GET',
+    headers: {},
+    data: {}
+  }
+  const response = await axiosRequest(server + 'operations', options)
   return response.data
 }
 
-export const fetchRecords = createAsyncThunk('records/fetchRecords', getRecords())
+export const fetchRecords = createAsyncThunk('records/fetchRecords', () => getRecords())

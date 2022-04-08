@@ -1,7 +1,7 @@
 // A tiny wrapper around fetch(), borrowed from
 // https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
 
-const baseUrl = "http://localhost:3004";
+const baseUrl = "http://localhost:3030/";
 
 export async function client(endpoint, { body, ...customConfig } = {}) {
   const headers = { "Content-Type": "application/json" };

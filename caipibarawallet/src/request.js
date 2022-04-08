@@ -1,6 +1,7 @@
 import axios from 'axios';
+export const server = 'http://localhost:3030/'
 
-export default function axiosRequest(url, option) {
+export function axiosRequest(url, option) {
     return axios({
         url: url,
         method: option.method,

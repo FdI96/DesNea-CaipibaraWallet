@@ -6,7 +6,7 @@ import RegisterRecords from "../Records/registerRecords/registerRecords";
 import DeleteRecords from "../Records/deleteRecords/deleteRecords";
 import EditRecords from "../Records/editRecords/editRecords";
 import { useDispatch, useSelector } from "react-redux";
-import { increment, decrement, selectStatus, selectAllRecords } from "../Records/reducer/fedeReducer";
+import { increment, decrement, selectStatus, selectAllRecords, fetchRecords } from "../Records/reducer/fedeReducer";
 // add this in a dinamyc way
 const urlServer = 'http://localhost:3030/'
 
@@ -25,6 +25,7 @@ function Body() {
     if (recordStatus === 'idle') {
       dispatch(fetchRecords())
     }
+    console.log(recordStatus, allRecords)
   }, [recordStatus, dispatch])
 
   function getRandomInt(min, max) {
