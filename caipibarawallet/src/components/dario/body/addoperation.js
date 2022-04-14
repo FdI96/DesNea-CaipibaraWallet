@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./addoperation.css"
-import { updateBalance } from '../reducer/darioReducer'
+import { updateBalance, fetchOperationById } from '../reducer/darioReducer'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+
 
 function AddOperation(props)
 {
+    let navigate = useNavigate();
+
+    const { operationId } = useParams();
+    console.log(operationId);
     const dispatch = useDispatch()
 
     const [id, setId] = useState(null)
@@ -13,17 +21,19 @@ function AddOperation(props)
     const [date, setDate] = useState(null)
     const [type, setType] = useState(null)
 
-    useEffect(() => {
-        if(props.operation != null)
-        {
-            setId(props.operation.id);
-            setConcept(props.operation.concept);
-            setAmount(props.operation.amount);
-            setDate(props.operation.date);
-            setType(props.operation.type);
-        }
+    var operation = useSelector(state => fetchOperationById(state, operationId)) 
+    useEffect(function() {
+        if(operation) {
 
+            setId(operation.id);
+            setConcept(operation.concept);
+            setAmount(operation.amount);
+            setDate(operation.date);
+            setType(operation.type);
+
+        }
     }, [])
+    
 
     const handleId = (ev) => {
         setId(ev.target.value);
@@ -62,9 +72,8 @@ function AddOperation(props)
             }
         }).then((response) => {
             console.log(response);
-            dispatch(updateBalance(parseInt(amount) - props.operation.amount))
-
-            props.volverDeAddOperation();
+            //dispatch(updateBalance(parseInt(amount) - props.operation.amount))
+            navigate('/dario/home', {replace: true})
 
         }).catch((error) => {
             console.log(error);
@@ -89,10 +98,10 @@ function AddOperation(props)
             
         }).then((response) => {
             console.log(response);
+            navigate('/dario/home', {replace: true})
 
-            dispatch(updateBalance(parseInt(amount)))
-
-            props.volverDeAddOperation();
+            //dispatch(updateBalance(parseInt(amount)))
+            
         }).catch((error) => {
             console.log(error);
         })
@@ -104,156 +113,59 @@ function AddOperation(props)
 
             <div class="block p-6 rounded-lg bg-white max-w-sm">
                 <h4 style={{fontWeight: 'bold'}}>
-                    {props.operation !== null ? 'EDIT OPERATION' : 'ADD OPERATION'}
+                    {operationId ? 'EDIT OPERATION' : 'ADD OPERATION'}
                 </h4>
+
+                <table className="operationForm">
+                    <tr>
+                        <td><label>Id</label></td>
+                        <td><input type="text" onChange={handleId} value={ id } disabled = {operationId ? true : false} /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Concept</label></td>
+                        <td><input type="text" onChange={handleConcept} value = {concept} /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Amount</label></td>
+                        <td><input type="text" onChange={handleAmount} value = { amount } /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Date</label></td>
+                        <td><input type="text" onChange={handleDate} value = { date } /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Type</label></td>
+                        <td>
+                            <select onChange={handleType} value= { type } disabled = {operationId ? true : false}>
+                                <option value="" disabled selected>Select your option</option>
+                                <option value="income">Income</option>
+                                <option value="outcome">Outcome</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <button className="form" type="button" >
+                                <Link to='/dario/home'>
+                                    Cancel
+                                </Link>
+                            </button>
+                            &nbsp;
+                            <button className="form" type="button"onClick={() => {
+                                if(operationId)
+                                {
+                                    updateOperation();
+                                }
+                                else{
+                                    registerOperation();
+                                }
+                            }}>Submit</button>
+                        </td>
+                    </tr>
+                </table>
                 
-                <form>
-                    <div class="form-group">
-                    <label for="exampleInputId1" class="self-start form-label inline-block mb-2 text-gray-700">Id</label>
-                    <input type="email" onChange={handleId} value={ id } disabled = {props.operation !== null ? true : false} class="form-control
-                        block
-                        w-full
-                        px-3
-                        py-1.5
-                        text-base
-                        font-normal
-                        text-gray-700
-                        bg-white bg-clip-padding
-                        border border-solid border-gray-300
-                        rounded
-                        transition
-                        ease-in-out
-                        m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputId1"
-                        aria-describedby="emailHelp" placeholder="Enter Id"  />
-                    
-                    </div>
-                    <div class="form-group">
-                    <label for="exampleInputConcept1" class="form-label inline-block mb-2 text-gray-700">Concept</label>
-                    <input type="text" onChange={handleConcept} value = {concept} class="form-control block
-                        w-full
-                        px-3
-                        py-1.5
-                        text-base
-                        font-normal
-                        text-gray-700
-                        bg-white bg-clip-padding
-                        border border-solid border-gray-300
-                        rounded
-                        transition
-                        ease-in-out
-                        m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputConcept1"
-                        placeholder="Enter Concept" />
-                    </div>
-                    <div class="form-group">
-                    <label for="exampleInputAmount1" class="form-label inline-block mb-2 text-gray-700">Amount</label>
-                    <input type="text" onChange={handleAmount} value = { amount } class="form-control block
-                        w-full
-                        px-3
-                        py-1.5
-                        text-base
-                        font-normal
-                        text-gray-700
-                        bg-white bg-clip-padding
-                        border border-solid border-gray-300
-                        rounded
-                        transition
-                        ease-in-out
-                        m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputAmount1"
-                        placeholder="Enter Amount" />
-                    </div>
-                    <div class="form-group">
-                    <label for="exampleInputDate1" class="form-label inline-block mb-2 text-gray-700">Date</label>
-                    <input type="text" onChange={handleDate} value = { date } class="form-control block
-                        w-full
-                        px-3
-                        py-1.5
-                        text-base
-                        font-normal
-                        text-gray-700
-                        bg-white bg-clip-padding
-                        border border-solid border-gray-300
-                        rounded
-                        transition
-                        ease-in-out
-                        m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputDate1"
-                        placeholder="Enter Date" />
-                    </div>
-
-                    <div class="form-group mb-6">
-                        <label for="exampleInputType1" class="form-label inline-block mb-2 text-gray-700">Type</label>
-
-                        <select onChange={handleType} value= { type } disabled = {props.operation !== null ? true : false} class="form-select appearance-none
-                        block
-                        w-full
-                        px-3
-                        py-1.5
-                        text-base
-                        font-normal
-                        text-gray-700
-                        bg-white bg-clip-padding bg-no-repeat
-                        border border-solid border-gray-300
-                        rounded
-                        transition
-                        ease-in-out
-                        m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInputType1" aria-label="Default select example">
-                            <option value="" disabled selected>Select your option</option>
-                            <option value="income">Income</option>
-                            <option value="outcome">Outcome</option>
-                        </select>
-                    </div>
-                    
-                    <button type="button" class="
-                        inline-block 
-                        px-6 
-                        py-2.5 
-                        bg-gray-200 
-                        text-gray-700
-                        font-medium 
-                        text-xs 
-                        leading-tight 
-                        uppercase 
-                        rounded 
-                        shadow-md 
-                        focus:bg-gray-900 
-                        focus:shadow-lg 
-                        focus:outline-none 
-                        focus:ring-0 
-                        active:bg-gray-900 
-                        active:shadow-lg 
-                        transition 
-                        duration-150 
-                        ease-in-out" onClick={props.volverDeAddOperation}>Cancel</button> 
-                    <button type="button" class="
-                        px-6
-                        py-2.5
-                        bg-gray-600
-                        text-white
-                        font-medium
-                        text-xs
-                        leading-tight
-                        uppercase
-                        rounded
-                        shadow-md
-                        hover:bg-blue-700 hover:shadow-lg
-                        focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-                        active:bg-blue-800 active:shadow-lg
-                        transition
-                        duration-150
-                        ease-in-out" onClick={() => {
-                            if(props.operation === null)
-                            {
-                                registerOperation();
-                            }
-                            else{
-                                updateOperation();
-                            }
-                        }}>Submit</button>
-                </form>
+            
             </div>
             
         </div>

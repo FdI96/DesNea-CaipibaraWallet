@@ -1,4 +1,8 @@
-table tr th, table tr td {
+div#bodytable {
+    min-height: 100vh;
+}
+
+table#operations tr th, table#operations tr td {
     text-align: left;
     width: 180px;
     padding-bottom: 10px;
@@ -6,15 +10,15 @@ table tr th, table tr td {
     
 }
 
-table tr td.actions {
+table#operations tr td.actions {
     width: 300px;
 }
 
-table tr {
+table#operations tr {
     border-bottom: 1px solid black;
 }
 
-table thead {
+table#operations thead {
     background-color: #d0d5d8;
 }
 
