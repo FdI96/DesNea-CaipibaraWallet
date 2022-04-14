@@ -6,7 +6,7 @@ import RegisterRecords from "../Records/registerRecords/registerRecords";
 import DeleteRecords from "../Records/deleteRecords/deleteRecords";
 import EditRecords from "../Records/editRecords/editRecords";
 import { useDispatch, useSelector } from "react-redux";
-import { increment, decrement } from "../Records/reducer/fedeReducer";
+import { increment, decrement, selectStatus, selectAllRecords, fetchRecords } from "../Records/reducer/fedeReducer";
 // add this in a dinamyc way
 const urlServer = 'http://localhost:3030/'
 
@@ -17,24 +17,16 @@ function Body() {
 
   const [records, setRecords] = useState([])
 
-  const fetchRecords = () => {
-    const url = urlServer + 'operations'
-    const option = {
-      method: 'GET',
-      body:{},
-      headers:''
+  const allRecords = useSelector(selectAllRecords)
+
+  const recordStatus = useSelector(selectStatus)
+
+  useEffect(() => {
+    if (recordStatus === 'idle') {
+      dispatch(fetchRecords())
     }
-    const response = axiosRequest(url, option)
-                      .then( response => {
-                        setRecords(response.data)
-
-                        console.log(records, response)
-                      } )
-                      .catch(error => console.log(error))
-    return response
-  }
-
-  useEffect(() => fetchRecords(), []);
+    console.log(recordStatus, allRecords)
+  }, [recordStatus, dispatch])
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -43,7 +35,7 @@ function Body() {
   const switchRenders = () => {
     switch (component) {
       case 'records':
-        return <ShowRecords records={records}/>
+        return <ShowRecords records={allRecords}/>
       case 'register':
         return <RegisterRecords />
       case 'delete':
@@ -51,7 +43,7 @@ function Body() {
       case 'edit':
         return <EditRecords />
       default:
-        return <ShowRecords records={records}/>
+        return <ShowRecords records={allRecords}/>
     }
   }
 
