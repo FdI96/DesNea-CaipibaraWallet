@@ -67,12 +67,9 @@ function Body(props) {
                     <td>{card.date}</td>
                     <td>{card.type}</td>
                     <td className="actions">
-
-                        <button>
-                            <Link to={`/dario/home/operation/edit/${card.id}`} className="link">
-                                Edit Operation
-                            </Link>
-                        </button> 
+                        <Link to={`/dario/home/operation/edit/${card.id}`} className="link">
+                            <button>Edit Operation</button>
+                        </Link>
                         &nbsp;
                         <button className="actions" onClick={() => {
                             setOperation(card);

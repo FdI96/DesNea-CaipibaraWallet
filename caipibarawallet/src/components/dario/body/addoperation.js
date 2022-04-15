@@ -146,11 +146,9 @@ function AddOperation(props)
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            <button className="form" type="button" >
-                                <Link to='/dario/home'>
-                                    Cancel
-                                </Link>
-                            </button>
+                            <Link to='/dario/home'>
+                                <button className="form" type="button">Cancel</button>
+                            </Link>
                             &nbsp;
                             <button className="form" type="button"onClick={() => {
                                 if(operationId)
