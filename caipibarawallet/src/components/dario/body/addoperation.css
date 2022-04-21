@@ -2,3 +2,38 @@ div#dario-addoperation {
     min-height: calc(100vh - 110px);
 }
 
+table.operationForm {
+    margin-top: 50px;
+}
+
+table.operationForm tr{
+    text-align: left;
+}
+
+table.operationForm input {
+    background-color: bisque;
+    padding: 8px;
+    width: 250px;
+}
+
+table.operationForm select {
+    background-color: bisque;
+    width: 100%;
+    padding: 8px;
+}
+
+table.operationForm td {
+    width: 150px;
+}
+
+button.form {
+    background-color: rgb(66, 87, 180);
+    color: white;
+    padding: 8px;
+    border: 1px solid rgb(30, 46, 116);
+    width: 120px;
+}
+
+button.form:hover {
+    background-color: rgb(30, 46, 116);
+}
